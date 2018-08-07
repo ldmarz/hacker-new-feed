@@ -5,10 +5,9 @@ const compose = require('compose-middleware').compose;
 const response = require('../middlewares/response.middleware');
 
 // Public Methods
-const someFunction = compose([someFunction]);
-
+module.exports.someFunction = compose([someFunction, response]);
 
 function someFunction(req, res, next) {
-  console.log('hola');
+  res.payload = {hola: 'mundo'};
   next();
 }

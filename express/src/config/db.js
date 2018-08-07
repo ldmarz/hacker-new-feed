@@ -1,3 +1,3 @@
-const configDb = {};
+const config = {};
 
 module.exports = config;
