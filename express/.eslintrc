@@ -36,14 +36,9 @@
         "allowTernary": true
       }
     ],
-    "object-curly-spacing": [
+    "semi": [
       "error",
-      "never"
-    ],
-    "space-before-function-paren": [
-      "error",
-      "never"
-    ],
-    "semi": ["error", "always"]
+      "always"
+    ]
   }
 }

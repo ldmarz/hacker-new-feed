@@ -13,7 +13,7 @@
     "apidoc": "better-npm-run apidoc"
   },
   "betterScripts": {
-    "start": "nodemon --exec babel-node index.js --inspect",
+    "start": "nodemon --exec babel-node index.js --inspect=0.0.0.0",
     "test": "NODE_ENV=test istanbul cover ./node_modules/.bin/_mocha --compilers js:babel-core/register test/**/*.js || true",
     "apidoc": "apidoc -i src/ -o documentation/"
   },
