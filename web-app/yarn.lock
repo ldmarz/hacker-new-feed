@@ -79,15 +79,6 @@
     "@angular-devkit/core" "0.7.3"
     rxjs "^6.0.0"
 
-"@angular-devkit/core@0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-0.7.2.tgz#f86c65c70daa8fccf67f4f5767a4ade7a5975caf"
-  dependencies:
-    ajv "~6.4.0"
-    chokidar "^2.0.3"
-    rxjs "^6.0.0"
-    source-map "^0.5.6"
-
 "@angular-devkit/core@0.7.3":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-0.7.3.tgz#a18f7b922390503b5226b3d64c4c54fb43ad15e2"
@@ -98,10 +89,10 @@
     source-map "^0.5.6"
 
 "@angular-devkit/schematics@0.7.3":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-0.7.2.tgz#809d62a264265cf345228aabead42695aa96dc64"
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-0.7.3.tgz#49dc93d55246814924e19db37dae43867ed563ea"
   dependencies:
-    "@angular-devkit/core" "0.7.2"
+    "@angular-devkit/core" "0.7.3"
     rxjs "^6.0.0"
 
 "@angular/animations@^6.1.2":
@@ -237,6 +228,12 @@
   resolved "https://registry.yarnpkg.com/@types/jasminewd2/-/jasminewd2-2.0.3.tgz#0d2886b0cbdae4c0eeba55e30792f584bf040a95"
   dependencies:
     "@types/jasmine" "*"
+
+"@types/moment@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
+  dependencies:
+    moment "*"
 
 "@types/node@^6.0.46":
   version "6.0.116"
@@ -3866,6 +3863,10 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+moment@*, moment@^2.22.2:
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
 move-concurrently@^1.0.1:
   version "1.0.1"

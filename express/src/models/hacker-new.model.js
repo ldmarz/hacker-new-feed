@@ -21,10 +21,6 @@ hackerNewModel.method('updateProps', function (newData) {
 });
 
 hackerNewModel.method('updateAndSave', function (newData) {
-  const title = newData.story_title || newData.title;
-
-  if (!title) { return; }
-
   this.updateProps(newData);
   return this.save();
 });

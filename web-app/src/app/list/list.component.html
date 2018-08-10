@@ -1,7 +1,16 @@
-<mat-list>
-  <mat-list-item>Item 1</mat-list-item>
+<mat-list *ngFor="let row of listPost">
+  <a href="{{row.url}}" target="__blank">
+    <mat-list-item class="list-item">
+      <div class="container-title">
+        <span> {{row.title}} - &nbsp; </span>
+        <span class="author"> {{row.author}} </span>
+      </div>
+
+      <div class="container-date">
+        {{parseDate(row.created_at)}}
+        <mat-icon (click)="deleteItem($event, row._id)" class="delete-icon" title="delete">delete</mat-icon>
+      </div>
+    </mat-list-item>
+  </a>
   <mat-divider></mat-divider>
-  <mat-list-item>Item 2</mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>Item 3</mat-list-item>
 </mat-list>

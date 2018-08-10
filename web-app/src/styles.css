@@ -9,7 +9,47 @@ mat-toolbar {
   padding: 40px;
 }
 
-.mainTitle {
-  font-size: 60;
+mat-list {
+  z-index: 0;
+  padding-top: 0px !important;
 }
 
+.mainTitle {
+  font-size: 60px;
+}
+
+.author {
+  color: #adadad; 
+}
+
+.list-item {
+  padding-left: 3%;
+}
+
+.container-date {
+  margin-left: auto;
+  position: relative;
+  padding-right: 20px;
+  margin-right: 8%;
+}
+
+.list-item:hover {
+  background: #f5f4f4;
+}
+
+.list-item:hover .delete-icon {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mat-icon.delete-icon {
+  z-index: 10;
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: -10px;
+  top: -4px;
+}

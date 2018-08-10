@@ -2,7 +2,6 @@
 const compose = require('compose-middleware').compose;
 const https = require('https');
 const url = 'https://hn.algolia.com/api/v1/search_by_date?query=nodejs';
-const _ = require('lodash');
 const Promise = require('bluebird');
 
 // Middlewares
@@ -12,11 +11,24 @@ const response = require('../middlewares/response.middleware');
 const HackerNewModel = require('../models/hacker-new.model');
 
 // Public Methods
-module.exports.someFunction = compose([someFunction, response]);
+module.exports.getList = compose([getList, response]);
+module.exports.deleteItem = compose([deleteItem, response]);
 module.exports.schedulleDataRecolector = schedulleDataRecolector;
 
-function someFunction(req, res, next) {
-  res.payload = { hola: 'mundo' };
+async function getList(req, res, next) {
+  const data = await HackerNewModel.find({ deleted: false }).sort('-created_at');
+  res.payload = data;
+
+  next();
+}
+
+async function deleteItem(req, res, next) {
+  const post = await HackerNewModel.findOne({ _id: req.body._id });
+  post.deleted = true;
+
+  await post.updateAndSave(post);
+
+  res.payload = post;
   next();
 }
 
@@ -46,19 +58,29 @@ function saveResponseInDatabase(resp) {
   });
 
   resp.on('end', () => {
-    try {
-      const parsedData = JSON.parse(rawData);
-      Promise.each(parsedData.hits, async eachHit => {
-        const post = await HackerNewModel.findOne({ objectID: eachHit.objectID });
-        if (post && post.deleted === false) {
-          return post.updateAndSave(eachHit);
-        } else {
-          const newHackerNewModel = new HackerNewModel(eachHit);
-          return newHackerNewModel.save();
-        }
-      });
-    } catch (e) {
-      console.error(e.message);
-    }
+    saveDataInDatabase(rawData);
   });
+}
+
+function saveDataInDatabase(rawData) {
+  try {
+    const parsedData = JSON.parse(rawData);
+    Promise.each(parsedData.hits, async eachHit => {
+      eachHit.title = eachHit.story_title || eachHit.title;
+      eachHit.url = eachHit.story_url || eachHit.url;
+
+      if (!eachHit.title) { return; }
+
+      const post = await HackerNewModel.findOne({ title: eachHit.title });
+
+      if (post && post.deleted === false) {
+        return post.updateAndSave(eachHit);
+      } else if (!post) {
+        const newHackerNewModel = new HackerNewModel(eachHit);
+        return newHackerNewModel.save();
+      }
+    });
+  } catch (e) {
+    console.error(e.message);
+  }
 }
